@@ -8,9 +8,14 @@
 // This file is the phaser3 configuration file
 
 import SplashScene from './splashScene.js'
+import TitleScene from './titleScene.js'
 
-// Our game scene
+// Our splash scene
 const splashScene = new SplashScene()
+
+// Out tital scene
+const titleScene = new TitleScene()
+
 
 // const
 
@@ -39,6 +44,7 @@ const game = new Phaser.Game(config)
 // load scene
 // NOTE: remember any "key" is global and CAN NOT be reused!
 game.scene.add('splashScene', splashScene)
+game.scene.add('titleScene', titleScene)
 
 // start title
 game.scene.start('splashScene')
