@@ -31,7 +31,7 @@ const config = {
     }
   },
 // background colour
-  backgroundColor: 0x5f6e7a ,
+  backgroundColor: 0xffffff,
 // center background
   scale: {
     mode: Phaser.Scale.FIT,
