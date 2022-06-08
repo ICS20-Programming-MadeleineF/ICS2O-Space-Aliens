@@ -26,7 +26,7 @@ class GameScene extends Phaser.Scene {
     console.log('Game Scene')
 
     this.load.image('park_game_background', 'assets/park_game_background.png')
-    this.load.image('ship', 'assets/spaceShip.png')
+    this.load.image('ship', 'assets/man_walking_dog.png')
   }
 
   // image position
