@@ -37,8 +37,27 @@ class GameScene extends Phaser.Scene {
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship')
   }
 
-  // time on screen
+  // time on screen and movement
   update (time, delta){ 
+
+    const keyLeftObj = this.input.keyboard.addKey('LEFT')
+    const keyRightObj = this.input.keyboard.addKey('RIGHT')
+
+    // left key movement
+    if (keyLeftObj.isDown === true) {
+      this.ship.x -= 15
+      if (this.ship.x < 0) {
+        this.ship.x = 0
+      }
+    }
+
+    // right key movement
+    if (keyRightObj.isDown === true) {
+      this.ship.x += 15
+      if (this.ship.x > 1920) {
+        this.ship.x = 1920
+      }
+    }
   }
 }
 
