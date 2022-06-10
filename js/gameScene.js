@@ -14,6 +14,7 @@ class GameScene extends Phaser.Scene {
 
     this.background = null
     this.ship = null
+    this.fireMissile = false
   }
 
   // background colour
@@ -23,18 +24,24 @@ class GameScene extends Phaser.Scene {
 
   //images and sound
   preload () {
-    console.log('Game Scene')
+    console.log('GameScene')
 
     this.load.image('park_game_background', 'assets/park_game_background.png')
     this.load.image('ship', 'assets/man_walking_dog.png')
+    this.load.image('missile', 'assets/tennis_ball.png')
   }
 
   // image position
   create (data) {
-    this.background = this.add.image(0, 0, 'park_game_background').setScale(2.0)
+    // background
+    this.background = this.add.image(0, 0, 'park_game_background').setScale(4.5)
     this.background.setOrigin(0, 0)
 
+    //ship
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship')
+
+    //missle
+    this.missileGroup = this.physics.add.group()
   }
 
   // time on screen and movement
@@ -42,6 +49,7 @@ class GameScene extends Phaser.Scene {
 
     const keyLeftObj = this.input.keyboard.addKey('LEFT')
     const keyRightObj = this.input.keyboard.addKey('RIGHT')
+    const keySpaceObj = this.input.keyboard.addKey('SPACE')
 
     // left key movement
     if (keyLeftObj.isDown === true) {
@@ -57,6 +65,20 @@ class GameScene extends Phaser.Scene {
       if (this.ship.x > 1920) {
         this.ship.x = 1920
       }
+    }
+
+    // space key movement
+    if (keySpaceObj.isDown === true) {
+      if (this.fireMissile === false) {
+        // fire missile
+        this.fireMissile = true
+        const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
+        this.missileGroup.add(aNewMissile)
+      }
+    }
+
+    if (keySpaceObj.isUp === true) {
+      this.fireMissile = false
     }
   }
 }
