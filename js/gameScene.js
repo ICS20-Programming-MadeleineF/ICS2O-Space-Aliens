@@ -22,13 +22,16 @@ class GameScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('#000000')
   }
 
-  //images and sound
+  //image and sound
   preload () {
     console.log('GameScene')
 
+    // images
     this.load.image('park_game_background', 'assets/park_game_background.png')
     this.load.image('ship', 'assets/man_walking_dog.png')
     this.load.image('missile', 'assets/tennis_ball.png')
+    // sounds
+    this.load.audio('laser', 'assets/laser1.wav')
   }
 
   // image position
@@ -70,10 +73,11 @@ class GameScene extends Phaser.Scene {
     // space key movement
     if (keySpaceObj.isDown === true) {
       if (this.fireMissile === false) {
-        // fire missile
+        // fire missile w/sound
         this.fireMissile = true
         const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
         this.missileGroup.add(aNewMissile)
+        this.sound.play('laser')
       }
     }
 
