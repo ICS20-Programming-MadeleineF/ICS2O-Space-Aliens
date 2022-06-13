@@ -27,6 +27,9 @@ class GameScene extends Phaser.Scene {
     this.background = null
     this.ship = null
     this.fireMissile = false
+    this.score = 0
+    this.scoreText = null
+    this.scoreTextStyle = { font: '65px Arial', fill: '#ffffff', align: 'center' }
   }
 
   // background colour
@@ -54,6 +57,9 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, 'park_game_background').setScale(4.5)
     this.background.setOrigin(0, 0)
 
+    // score
+    this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
+
     //ship
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship')
 
@@ -69,6 +75,8 @@ class GameScene extends Phaser.Scene {
       alienCollide.destroy()
       missileCollide.destroy()
       this.sound.play('explosion')
+      this.score = this.score + 2
+      this.scoreText.setText('Score: ' + this.score.toString())
       this.createAlien()
       this.createAlien()
     }.bind(this))
