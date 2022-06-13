@@ -9,6 +9,18 @@
 
 // define variables
 class GameScene extends Phaser.Scene {
+
+  // create an alien
+  createAlien() {
+    const alienXLocation = Math.floor(Math.random() * 1920) + 1
+    let alienXVelocity: number loor(Math.random() * 50) + 1
+    alienXVelocity *= Math.round(Math.random()) ? 1 : -1
+    const anAlien = this.physics.add.sprite(alienXLocation, -100, 'alien')
+    anAlien.body.velocity.y = 200
+    anAlien.body.velocity.x = alienXVelocity
+    this.alienGroup.add(anAlien)
+  }
+  
   constructor () {
     super({ key: 'gameScene' })
 
@@ -30,6 +42,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('park_game_background', 'assets/park_game_background.png')
     this.load.image('ship', 'assets/man_walking_dog.png')
     this.load.image('missile', 'assets/tennis_ball.png')
+    this.load.image('alien', 'assets/baby_sprite.png')
     // sounds
     this.load.audio('laser', 'assets/laser1.wav')
   }
@@ -45,6 +58,10 @@ class GameScene extends Phaser.Scene {
 
     //missle
     this.missileGroup = this.physics.add.group()
+
+    //alien
+    this.alienGroup = this.add.group()
+    this.createAlien()
   }
 
   // time on screen and movement
