@@ -49,6 +49,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('ship', 'assets/man_walking_dog.png')
     this.load.image('missile', 'assets/tennis_ball.png')
     this.load.image('alien', 'assets/baby_sprite.v3.png')
+    this.load.image('dog', 'assets/dead_dog.webp')
     // sounds
     this.load.audio('laser', 'assets/laser1.wav')
     this.load.audio('explosion', 'assets/barrelExploding.wav')
@@ -91,6 +92,8 @@ class GameScene extends Phaser.Scene {
       this.physics.pause()
       alienCollide.destroy()
       shipCollide.destroy()
+      this.score = 0
+      this.background = this.add.image(1920 / 2, 1080 / 2, 'dog')
       this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
       this.gameOverText.setInteractive({ useHandCursor: true})
       this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
