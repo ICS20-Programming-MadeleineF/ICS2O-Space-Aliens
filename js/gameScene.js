@@ -20,7 +20,8 @@ class GameScene extends Phaser.Scene {
     anAlien.body.velocity.x = alienXVelocity
     this.alienGroup.add(anAlien)
   }
-  
+
+  // this is this preload part
   constructor () {
     super({ key: 'gameScene' })
 
@@ -143,6 +144,7 @@ class GameScene extends Phaser.Scene {
       if (item.y < 0)
         item.destroy()
     })
+    // alien loop
      this.alienGroup.children.each(function (item) {
       if (item.y > 1080) {
         item.y = -10
