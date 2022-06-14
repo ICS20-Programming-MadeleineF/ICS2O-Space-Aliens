@@ -143,6 +143,12 @@ class GameScene extends Phaser.Scene {
       if (item.y < 0)
         item.destroy()
     })
+     this.alienGroup.children.each(function (item) {
+      if (item.y > 1080) {
+        item.y = -10
+        item.x = Math.floor(Math.random() * 1920 + 1)
+      }
+    })
   }
 }
 
